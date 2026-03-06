@@ -1,0 +1,29 @@
+[
+  {
+    "id": "sample_001",
+    "input": "The system should respond quickly to user requests.",
+    "expected_flags": [
+      {
+        "flag_type": "vague_language",
+        "flagged_text": "quickly",
+        "explanation": "No specific response time defined"
+      }
+    ]
+  },
+  {
+    "id": "sample_002",
+    "input": "Users should be able to upload files of appropriate size.",
+    "expected_flags": [
+      {
+        "flag_type": "vague_language",
+        "flagged_text": "appropriate size",
+        "explanation": "No specific file size limit defined"
+      }
+    ]
+  },
+  {
+    "id": "sample_003",
+    "input": "The admin can modify user permissions.",
+    "expected_flags": []
+  }
+]

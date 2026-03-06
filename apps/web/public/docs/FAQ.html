@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - QANTAM AI Platform</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; background: #f8fafc; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .top-nav { background: #0f172a; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .top-nav .logo { color: white; font-weight: 700; font-size: 1.25rem; text-decoration: none; }
+        .top-nav .nav-links { display: flex; gap: 25px; }
+        .top-nav .nav-links a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+        .top-nav .nav-links a:hover, .top-nav .nav-links a.active { color: white; }
+        .top-nav .home-btn { background: #3b82f6; color: white !important; padding: 8px 16px; border-radius: 6px; font-weight: 500; }
+        .top-nav .home-btn:hover { background: #2563eb; }
+        header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 60px 20px; text-align: center; }
+        header h1 { font-size: 3rem; margin-bottom: 10px; }
+        header p { font-size: 1.25rem; opacity: 0.9; }
+        .category { margin-bottom: 40px; }
+        .category-title { color: #1e3a8a; font-size: 1.5rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #3b82f6; }
+        .faq-item { background: white; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; }
+        .faq-question { padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #334155; transition: background 0.2s; }
+        .faq-question:hover { background: #f8fafc; }
+        .faq-question::after { content: '+'; font-size: 1.5rem; color: #3b82f6; transition: transform 0.3s; }
+        .faq-item.active .faq-question::after { transform: rotate(45deg); }
+        .faq-answer { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; color: #475569; }
+        .faq-item.active .faq-answer { padding: 0 25px 25px 25px; max-height: 2000px; }
+        .faq-answer p { margin-bottom: 15px; }
+        .faq-answer ul, .faq-answer ol { margin: 15px 0 15px 25px; }
+        .faq-answer li { margin-bottom: 8px; }
+        .highlight-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .highlight-box.green { background: #f0fdf4; border-left-color: #22c55e; }
+        .highlight-box.amber { background: #fffbeb; border-left-color: #f59e0b; }
+        .code-block { background: #1e293b; color: #e2e8f0; padding: 15px 20px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.9rem; overflow-x: auto; margin: 15px 0; white-space: pre; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        th { background: #f1f5f9; font-weight: 600; color: #334155; }
+        .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-amber { background: #fef3c7; color: #92400e; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .search-box { background: white; padding: 20px; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .search-box input { width: 100%; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; outline: none; }
+        .search-box input:focus { border-color: #3b82f6; }
+        .toc { background: white; padding: 25px; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .toc h3 { color: #1e3a8a; margin-bottom: 15px; }
+        .toc ul { list-style: none; margin: 0; }
+        .toc li { margin-bottom: 8px; }
+        .toc a { color: #3b82f6; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        footer { background: #1e293b; color: #94a3b8; padding: 40px 20px; text-align: center; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="/" class="logo">QANTAM AI</a>
+        <div class="nav-links">
+            <a href="/about">About</a>
+            <a href="/faq" class="active">FAQ</a>
+            <a href="/status">Sprint Status</a>
+            <a href="/" class="home-btn">← Home</a>
+        </div>
+    </nav>
+    <header>
+        <h1>Frequently Asked Questions</h1>
+        <p>Everything you need to know about QANTAM AI</p>
+    </header>
+
+    <div class="container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search FAQs..." onkeyup="searchFAQs()">
+        </div>
+
+        <div class="toc">
+            <h3>Quick Navigation</h3>
+            <ul>
+                <li><a href="#general">General Questions</a></li>
+                <li><a href="#architecture">Architecture & Technical</a></li>
+                <li><a href="#modules">Modules (CLARITY, PULSE, SIGNAL, FORGE, SENTINEL)</a></li>
+                <li><a href="#integration">Integration & Legacy Systems</a></li>
+                <li><a href="#ai">AI & LLM</a></li>
+                <li><a href="#security">Security & Multi-Tenancy</a></li>
+            </ul>
+        </div>
+
+        <!-- General Questions -->
+        <div class="category" id="general">
+            <h2 class="category-title">General Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">What is QANTAM AI?</div>
+                <div class="faq-answer">
+                    <p><strong>QANTAM is an AI-powered quality engineering platform</strong> that helps QA teams work faster and smarter.</p>
+                    <p>It consists of 5 integrated modules:</p>
+                    <ol>
+                        <li><strong>CLARITY</strong> - Analyzes requirements for ambiguity, gaps, and conflicts</li>
+                        <li><strong>PULSE</strong> - Generates test cases automatically</li>
+                        <li><strong>SIGNAL</strong> - Calculates release quality scores for Go/No-Go decisions</li>
+                        <li><strong>FORGE</strong> - Flags risky code changes in pull requests</li>
+                        <li><strong>SENTINEL</strong> - Traces production bugs back to test gaps</li>
+                    </ol>
+                    <p>All modules share a central intelligence graph (QKG) that gets smarter over time.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Who is QANTAM designed for?</div>
+                <div class="faq-answer">
+                    <table>
+                        <tr><th>Role</th><th>Primary Use</th></tr>
+                        <tr><td>QA Engineer</td><td>Review requirements, generate tests, approve AI suggestions</td></tr>
+                        <tr><td>QA Lead</td><td>Monitor coverage, track team metrics, ensure quality</td></tr>
+                        <tr><td>Release Manager</td><td>Get Go/No-Go recommendations with evidence</td></tr>
+                        <tr><td>Developer</td><td>See quality risk scores on pull requests</td></tr>
+                        <tr><td>CTO / Auditor</td><td>Access compliance reports and quality trends</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What makes QANTAM different from other QA tools?</div>
+                <div class="faq-answer">
+                    <p>Three key differentiators:</p>
+                    <ol>
+                        <li><strong>Quality Knowledge Graph (QKG)</strong> - All modules share a central intelligence graph that connects requirements → tests → code → defects → production incidents.</li>
+                        <li><strong>Confidence Scoring</strong> - Every AI output includes a confidence score (0-100). Low-confidence items are flagged for human review.</li>
+                        <li><strong>Accuracy Gates</strong> - No AI feature ships until it passes precision/recall thresholds on golden datasets.</li>
+                    </ol>
+                    <div class="highlight-box green">
+                        <strong>The Compounding Effect:</strong> When SENTINEL traces a production bug to a test gap, that feedback improves PULSE's test generation. This is the flywheel competitors don't have.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How much time can QANTAM save?</div>
+                <div class="faq-answer">
+                    <p>Based on design partner data:</p>
+                    <ul>
+                        <li><strong>Test case writing:</strong> 70% time reduction</li>
+                        <li><strong>Requirement review:</strong> 50% faster</li>
+                        <li><strong>Release documentation:</strong> 90% faster (5 min vs 2 hours)</li>
+                        <li><strong>Defect triage:</strong> 40% faster</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Architecture -->
+        <div class="category" id="architecture">
+            <h2 class="category-title">Architecture & Technical</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">What is the Quality Knowledge Graph (QKG)?</div>
+                <div class="faq-answer">
+                    <p>The QKG is a Neo4j graph database that serves as the "brain" of QANTAM. It stores relationships between:</p>
+                    <ul>
+                        <li><strong>Requirements</strong> - With quality scores, flags, and regulatory mappings</li>
+                        <li><strong>Test Cases</strong> - Linked to source requirements via traceability seeds</li>
+                        <li><strong>Code Modules</strong> - With defect history and risk scores</li>
+                        <li><strong>Defects</strong> - Categorized by severity and root cause</li>
+                        <li><strong>Production Incidents</strong> - Traced back to test and requirement gaps</li>
+                    </ul>
+                    <div class="code-block">(:Requirement)-[:REQUIRES_TESTING]->(:TestCase)
+(:TestCase)-[:COVERS]->(:CodeModule)
+(:CodeModule)-[:HAS_DEFECT]->(:Defect)
+(:Defect)-[:ESCAPED_AS]->(:ProductionIncident)</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What databases does QANTAM use?</div>
+                <div class="faq-answer">
+                    <table>
+                        <tr><th>Database</th><th>Type</th><th>Purpose</th></tr>
+                        <tr><td>PostgreSQL 16</td><td>Relational</td><td>Users, tenants, projects, audit logs</td></tr>
+                        <tr><td>Neo4j 5</td><td>Graph</td><td>Quality Knowledge Graph (QKG)</td></tr>
+                        <tr><td>Redis 7</td><td>Key-Value</td><td>Sessions, cache, task queue</td></tr>
+                        <tr><td>MinIO</td><td>Object Storage</td><td>Documents, reports</td></tr>
+                        <tr><td>Meilisearch</td><td>Search Engine</td><td>Full-text search</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What is the technology stack?</div>
+                <div class="faq-answer">
+                    <table>
+                        <tr><th>Layer</th><th>Technology</th></tr>
+                        <tr><td>Frontend</td><td>Next.js 14, React, TypeScript, Tailwind CSS</td></tr>
+                        <tr><td>Backend</td><td>FastAPI, Python 3.11, Pydantic, SQLAlchemy</td></tr>
+                        <tr><td>LLM</td><td>LiteLLM → Claude Sonnet/Haiku, Llama 3.1 8B</td></tr>
+                        <tr><td>Orchestration</td><td>K3s (lightweight Kubernetes)</td></tr>
+                        <tr><td>CI/CD</td><td>GitHub Actions</td></tr>
+                        <tr><td>Monitoring</td><td>Grafana, Prometheus, Loki</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modules -->
+        <div class="category" id="modules">
+            <h2 class="category-title">Modules</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">What does CLARITY do?</div>
+                <div class="faq-answer">
+                    <p><strong>CLARITY is the Requirement Intelligence module.</strong></p>
+                    <p><strong>What it detects:</strong></p>
+                    <ul>
+                        <li><strong>Vague Language</strong> - "The system should be fast" → What is "fast"?</li>
+                        <li><strong>Undefined Terms</strong> - "User" without specifying which type</li>
+                        <li><strong>Missing Actors</strong> - "Data should be validated" → By whom?</li>
+                        <li><strong>Multiple Interpretations</strong> - Ambiguous statements</li>
+                        <li><strong>Untestable Requirements</strong> - No clear pass/fail criteria</li>
+                        <li><strong>Conflicts</strong> - Requirements that contradict each other</li>
+                    </ul>
+                    <p><strong>Output:</strong> Requirement Quality Score (RQS) 0-100, flags with suggested rewrites, Health Report PDF</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What does PULSE do?</div>
+                <div class="faq-answer">
+                    <p><strong>PULSE is the Test Suite Factory.</strong></p>
+                    <p><strong>Test types generated:</strong> Positive, Negative, Edge Cases, Compliance Tests</p>
+                    <p><strong>Export formats:</strong> Jira Zephyr Scale, Azure DevOps, Gherkin, Excel, CSV</p>
+                    <p><strong>Human review:</strong> Every test goes through Approve / Edit / Reject. Feedback improves future generation.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What does SIGNAL do?</div>
+                <div class="faq-answer">
+                    <p><strong>SIGNAL calculates Release Quality Score (RQS)</strong> for Go/No-Go decisions.</p>
+                    <p><strong>RQS Formula:</strong></p>
+                    <ul>
+                        <li>Coverage Score (35%) - % requirements with approved tests</li>
+                        <li>Defect Score (30%) - Open P0/P1/P2 count</li>
+                        <li>Test Execution Score (25%) - Pass rate</li>
+                        <li>CLARITY Score (10%) - Average requirement quality</li>
+                    </ul>
+                    <table>
+                        <tr><th>Score</th><th>Decision</th></tr>
+                        <tr><td>> 80</td><td><span class="badge badge-green">GO</span></td></tr>
+                        <tr><td>60-80</td><td><span class="badge badge-amber">CONDITIONAL GO</span></td></tr>
+                        <tr><td>< 60</td><td><span class="badge badge-red">NO-GO</span></td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What does FORGE do?</div>
+                <div class="faq-answer">
+                    <p><strong>FORGE provides Code Review Intelligence.</strong></p>
+                    <p>It analyzes PRs and posts Quality Risk Score comments within 60 seconds based on:</p>
+                    <ul>
+                        <li>Module defect density (last 90 days)</li>
+                        <li>Change complexity</li>
+                        <li>Coverage delta</li>
+                        <li>Days since last test update</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What does SENTINEL do?</div>
+                <div class="faq-answer">
+                    <p><strong>SENTINEL monitors production and traces bugs back to test gaps.</strong></p>
+                    <ul>
+                        <li>Log Ingestion from APM tools</li>
+                        <li>Escaped Defect Classification</li>
+                        <li>QKG Tracing: incident → test gap → requirement gap</li>
+                        <li>Auto Regression Test generation</li>
+                    </ul>
+                    <div class="highlight-box green">
+                        <strong>The Compounding Loop:</strong> SENTINEL findings feed back into QKG, making FORGE and PULSE smarter over time.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Integration -->
+        <div class="category" id="integration">
+            <h2 class="category-title">Integration & Legacy Systems</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">How does QANTAM work with legacy projects?</div>
+                <div class="faq-answer">
+                    <p>QANTAM integrates incrementally without requiring a complete overhaul:</p>
+                    <p><strong>Phase 1: Connect (Week 1)</strong> - Connect Jira/ADO, GitHub/GitLab, upload existing docs</p>
+                    <p><strong>Phase 2: Ingest (Week 2-3)</strong> - Import requirements, test cases, defect history into QKG</p>
+                    <p><strong>Phase 3: Use (Week 4+)</strong> - CLARITY analyzes new requirements, PULSE generates tests, FORGE comments on PRs</p>
+                    <div class="highlight-box">
+                        <strong>Key Point:</strong> You don't need to re-test everything. QANTAM works incrementally on new work while learning from historical data.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What tools does QANTAM integrate with?</div>
+                <div class="faq-answer">
+                    <table>
+                        <tr><th>Category</th><th>Tools</th></tr>
+                        <tr><td>Issue Tracking</td><td>Jira, Azure DevOps, Linear</td></tr>
+                        <tr><td>Test Management</td><td>Jira Zephyr Scale, Azure Test Plans, TestRail</td></tr>
+                        <tr><td>Source Control</td><td>GitHub, GitLab, Bitbucket, Azure Repos</td></tr>
+                        <tr><td>Documentation</td><td>Confluence, Notion, SharePoint</td></tr>
+                        <tr><td>Communication</td><td>Slack, Microsoft Teams</td></tr>
+                        <tr><td>APM</td><td>Datadog, New Relic, Sentry</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI -->
+        <div class="category" id="ai">
+            <h2 class="category-title">AI & LLM</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Which AI models does QANTAM use?</div>
+                <div class="faq-answer">
+                    <table>
+                        <tr><th>Task</th><th>Model</th><th>Cost</th></tr>
+                        <tr><td>Ambiguity Detection</td><td>Claude Sonnet</td><td><span class="badge badge-red">$$$</span></td></tr>
+                        <tr><td>Regulatory Mapping</td><td>Claude Sonnet</td><td><span class="badge badge-red">$$$</span></td></tr>
+                        <tr><td>Test Generation</td><td>Claude Haiku</td><td><span class="badge badge-amber">$$</span></td></tr>
+                        <tr><td>Defect Classification</td><td>Llama 3.1 8B (local)</td><td><span class="badge badge-green">FREE</span></td></tr>
+                        <tr><td>Report Formatting</td><td>Llama 3.1 8B (local)</td><td><span class="badge badge-green">FREE</span></td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How does confidence scoring work?</div>
+                <div class="faq-answer">
+                    <table>
+                        <tr><th>Score</th><th>Status</th><th>Action</th></tr>
+                        <tr><td>85-100</td><td><span class="badge badge-green">AUTO APPROVE</span></td><td>Suggested for approval</td></tr>
+                        <tr><td>70-84</td><td><span class="badge badge-amber">HUMAN REVIEW</span></td><td>Requires verification</td></tr>
+                        <tr><td>0-69</td><td><span class="badge badge-red">LOW CONFIDENCE</span></td><td>Needs careful review</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What are accuracy gates?</div>
+                <div class="faq-answer">
+                    <p>Quality thresholds that AI features must pass before shipping:</p>
+                    <table>
+                        <tr><th>Feature</th><th>Metric</th><th>Threshold</th></tr>
+                        <tr><td>Ambiguity Detection</td><td>Precision</td><td>≥ 70%</td></tr>
+                        <tr><td>Conflict Detection</td><td>Precision</td><td>≥ 80%</td></tr>
+                        <tr><td>Positive Tests</td><td>Approval Rate</td><td>≥ 60%</td></tr>
+                        <tr><td>RQS Engine</td><td>Correlation</td><td>≥ 70%</td></tr>
+                    </table>
+                    <p>Enforced in CI/CD - <code>make eval</code> blocks merges if thresholds aren't met.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security -->
+        <div class="category" id="security">
+            <h2 class="category-title">Security & Multi-Tenancy</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">How does multi-tenant isolation work?</div>
+                <div class="faq-answer">
+                    <p>Strict isolation at every layer:</p>
+                    <ol>
+                        <li><strong>JWT Token</strong> - Every request includes tenant_id</li>
+                        <li><strong>Middleware</strong> - Validates tenant_id on every request</li>
+                        <li><strong>Database</strong> - Every query includes tenant_id filter</li>
+                        <li><strong>Neo4j</strong> - QKG queries always scoped by tenant_id</li>
+                    </ol>
+                    <p>Cross-tenant access is architecturally impossible.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Is data sent to external AI providers?</div>
+                <div class="faq-answer">
+                    <ul>
+                        <li><strong>Claude (Anthropic)</strong> - Used for complex analysis. Data sent to Anthropic API.</li>
+                        <li><strong>Llama 3.1 (local)</strong> - Used for simpler tasks. Data stays on your infrastructure.</li>
+                    </ul>
+                    <p>For strict data residency: on-premise deployment, all-local-LLM mode, or private Claude via AWS Bedrock available.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>QANTAM AI - Quality Engineering AI Platform</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Confidential - Test Yantra Internal</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const wasActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!wasActive) item.classList.add('active');
+            });
+        });
+        function searchFAQs() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(term) ? 'block' : 'none';
+                if (term.length > 2 && text.includes(term)) item.classList.add('active');
+            });
+        }
+    </script>
+</body>
+</html>

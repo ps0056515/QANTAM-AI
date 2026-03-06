@@ -1,0 +1,39 @@
+[
+  {
+    "id": "sample_001",
+    "input": "Users can log in with email and password. The system validates credentials against the database and creates a session token on success.",
+    "expected_tests": [
+      {
+        "title": "Verify successful login with valid credentials",
+        "type": "positive",
+        "would_approve": true
+      },
+      {
+        "title": "Verify session token is created after login",
+        "type": "positive",
+        "would_approve": true
+      }
+    ]
+  },
+  {
+    "id": "sample_002",
+    "input": "The shopping cart displays all added items with quantity, unit price, and total. Users can update quantities or remove items.",
+    "expected_tests": [
+      {
+        "title": "Verify cart displays item details correctly",
+        "type": "positive",
+        "would_approve": true
+      },
+      {
+        "title": "Verify quantity update recalculates total",
+        "type": "positive",
+        "would_approve": true
+      },
+      {
+        "title": "Verify item removal from cart",
+        "type": "positive",
+        "would_approve": true
+      }
+    ]
+  }
+]

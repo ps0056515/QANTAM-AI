@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About QANTAM AI - Quality Engineering AI Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .top-nav {
+            background: #0f172a;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-nav .logo {
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+        }
+        .top-nav .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        .top-nav .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .top-nav .nav-links a:hover,
+        .top-nav .nav-links a.active {
+            color: white;
+        }
+        .top-nav .home-btn {
+            background: #3b82f6;
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        .top-nav .home-btn:hover {
+            background: #2563eb;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .section h2 {
+            color: #1e3a8a;
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .section h3 {
+            color: #334155;
+            font-size: 1.25rem;
+            margin: 25px 0 15px 0;
+        }
+        .section p {
+            margin-bottom: 15px;
+            color: #475569;
+        }
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box.green {
+            background: #f0fdf4;
+            border-left-color: #22c55e;
+        }
+        .highlight-box.amber {
+            background: #fffbeb;
+            border-left-color: #f59e0b;
+        }
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .module-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+        }
+        .module-card h4 {
+            color: #1e3a8a;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .module-card .tag {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #f1f5f9;
+            font-weight: 600;
+            color: #334155;
+        }
+        tr:hover {
+            background: #f8fafc;
+        }
+        .architecture-diagram {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 30px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.4;
+        }
+        .flow-diagram {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.4;
+        }
+        ul {
+            margin: 15px 0 15px 25px;
+        }
+        li {
+            margin-bottom: 8px;
+            color: #475569;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-amber { background: #fef3c7; color: #92400e; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        .stat-card .label {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="/" class="logo">QANTAM AI</a>
+        <div class="nav-links">
+            <a href="/about" class="active">About</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Sprint Status</a>
+            <a href="/" class="home-btn">← Home</a>
+        </div>
+    </nav>
+    <header>
+        <h1>QANTAM AI</h1>
+        <p>Quality Engineering AI Platform</p>
+    </header>
+
+    <div class="container">
+        <!-- What is QANTAM -->
+        <div class="section">
+            <h2>What is QANTAM?</h2>
+            <p><strong>QANTAM is an AI-powered platform that helps QA teams work faster and smarter.</strong></p>
+            
+            <div class="highlight-box">
+                <strong>In One Sentence:</strong> QANTAM uses AI to analyze requirements, generate tests, score release quality, flag risky code, and learn from production bugs - all connected through a central intelligence graph that gets smarter over time.
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="number">70%</div>
+                    <div class="label">Time Saved on Test Writing</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">5</div>
+                    <div class="label">Integrated Modules</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">60%+</div>
+                    <div class="label">Test Approval Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">24/7</div>
+                    <div class="label">Continuous Learning</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The 5 Modules -->
+        <div class="section">
+            <h2>The 5 Modules</h2>
+            
+            <div class="module-grid">
+                <div class="module-card">
+                    <span class="tag">Requirements</span>
+                    <h4>1. CLARITY - Requirement Intelligence</h4>
+                    <p><strong>Problem:</strong> Requirements are often vague, incomplete, or contradictory. QA engineers waste time guessing what they mean.</p>
+                    <p><strong>Solution:</strong> AI analyzes requirements and flags issues like vague language, missing acceptance criteria, and conflicts.</p>
+                    <p><strong>Output:</strong> Quality score (0-100) and suggested rewrites for each requirement.</p>
+                </div>
+
+                <div class="module-card">
+                    <span class="tag">Testing</span>
+                    <h4>2. PULSE - Test Suite Factory</h4>
+                    <p><strong>Problem:</strong> Writing test cases is tedious and time-consuming.</p>
+                    <p><strong>Solution:</strong> AI generates test cases automatically - positive, negative, edge cases, and compliance tests.</p>
+                    <p><strong>Output:</strong> Ready-to-use test cases exportable to Jira, Excel, or Gherkin format.</p>
+                </div>
+
+                <div class="module-card">
+                    <span class="tag">Release</span>
+                    <h4>3. SIGNAL - Release Quality Score</h4>
+                    <p><strong>Problem:</strong> Release managers lack objective data for Go/No-Go decisions.</p>
+                    <p><strong>Solution:</strong> Calculates Release Quality Score based on coverage, defects, test results, and requirement quality.</p>
+                    <p><strong>Output:</strong> GO / CONDITIONAL GO / NO-GO recommendation with evidence.</p>
+                </div>
+
+                <div class="module-card">
+                    <span class="tag">Code Review</span>
+                    <h4>4. FORGE - Code Review Intelligence</h4>
+                    <p><strong>Problem:</strong> Reviewers don't know which code changes are riskiest.</p>
+                    <p><strong>Solution:</strong> Analyzes PR changes against defect history and comments with risk score.</p>
+                    <p><strong>Output:</strong> Quality Risk Score on every Pull Request within 60 seconds.</p>
+                </div>
+
+                <div class="module-card">
+                    <span class="tag">Production</span>
+                    <h4>5. SENTINEL - Production Monitoring</h4>
+                    <p><strong>Problem:</strong> Teams don't learn systematically from production bugs.</p>
+                    <p><strong>Solution:</strong> Traces production incidents back to test gaps and generates regression tests.</p>
+                    <p><strong>Output:</strong> Automatic test generation for escaped defects + feedback loop to improve AI.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Architecture -->
+        <div class="section">
+            <h2>System Architecture</h2>
+            
+            <h3>High-Level Overview</h3>
+            <div class="architecture-diagram">
+┌─────────────────────────────────────────────────────────────────┐
+│                    EXTERNAL SYSTEMS                             │
+│  [Jira/ADO]  [GitHub/GitLab]  [Confluence]  [Slack/Teams]      │
+└──────┬───────────────┬──────────────┬──────────────┬───────────┘
+       │               │              │              │
+       ▼               ▼              ▼              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      QANTAM PLATFORM                            │
+│                                                                 │
+│   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────┐  │
+│   │ CLARITY  │  │  PULSE   │  │  SIGNAL  │  │FORGE/SENTINEL│  │
+│   │ Req Intel│  │Test Suite│  │ Release  │  │Code/Prod Mon │  │
+│   └────┬─────┘  └────┬─────┘  └────┬─────┘  └──────┬───────┘  │
+│        └─────────────┴─────────────┴───────────────┘           │
+│                           │                                     │
+│              ┌────────────▼────────────┐                       │
+│              │  Quality Knowledge Graph │                       │
+│              │       (Neo4j QKG)        │                       │
+│              └────────────┬────────────┘                       │
+│                           │                                     │
+│   ┌───────────────────────▼───────────────────────────────┐   │
+│   │        LLM Orchestration (LiteLLM)                     │   │
+│   │   Claude Sonnet ◄─► Claude Haiku ◄─► Llama 3.1 local  │   │
+│   └───────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    QA TEAM (End Users)                          │
+│     [QA Engineer]  [QA Lead]  [Release Manager]  [CTO]         │
+└─────────────────────────────────────────────────────────────────┘</div>
+
+            <h3>Request Lifecycle</h3>
+            <div class="flow-diagram">
+User Action (browser)
+       │
+       ▼
+┌──────────────────┐
+│  Next.js Frontend │  ← React UI with typed API calls
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  FastAPI Router   │  ← 1. JWT auth verified
+│                   │  ← 2. Tenant ID extracted
+│                   │  ← 3. RBAC permission checked
+│                   │  ← 4. Request validated (Pydantic)
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  Service Layer    │  ← 5. QKG queried for context (Neo4j)
+│  (Business Logic) │  ← 6. Task pushed to Redis queue (async)
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  AI Worker        │  ← 7. Prompt assembled with QKG context
+│  (Async Process)  │  ← 8. LiteLLM routes to correct model
+│                   │  ← 9. Confidence score attached (0-100)
+│                   │  ← 10. Result stored in QKG
+│                   │  ← 11. Audit log written (PostgreSQL)
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  Review UI        │  ← 12. Human approves/edits/rejects
+│                   │  ← 13. Feedback stored in QKG
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  Output Action    │  ← 14. Push to Jira / Export / Update QKG
+└──────────────────┘</div>
+
+            <h3>Data Architecture</h3>
+            <table>
+                <tr>
+                    <th>Database</th>
+                    <th>Type</th>
+                    <th>Purpose</th>
+                    <th>Data Stored</th>
+                </tr>
+                <tr>
+                    <td><strong>PostgreSQL</strong></td>
+                    <td>Relational</td>
+                    <td>Operational Data</td>
+                    <td>Users, tenants, projects, audit logs, ROI metrics, tasks</td>
+                </tr>
+                <tr>
+                    <td><strong>Neo4j (QKG)</strong></td>
+                    <td>Graph</td>
+                    <td>Intelligence Graph</td>
+                    <td>Requirements, test cases, defects, code modules, incidents, relationships</td>
+                </tr>
+                <tr>
+                    <td><strong>Redis</strong></td>
+                    <td>Key-Value</td>
+                    <td>Cache & Queue</td>
+                    <td>Sessions, LLM output cache, async task queue</td>
+                </tr>
+                <tr>
+                    <td><strong>MinIO</strong></td>
+                    <td>Object Storage</td>
+                    <td>File Storage</td>
+                    <td>Uploaded documents, generated reports, exports</td>
+                </tr>
+                <tr>
+                    <td><strong>Meilisearch</strong></td>
+                    <td>Search Engine</td>
+                    <td>Full-text Search</td>
+                    <td>Requirements index, test cases index, defects index</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- The Secret Sauce -->
+        <div class="section">
+            <h2>The Secret Sauce: Quality Knowledge Graph (QKG)</h2>
+            
+            <p>All 5 modules share a central "brain" - a graph database that connects everything:</p>
+            
+            <div class="flow-diagram">
+Requirement → Test Case → Code Module → Defect → Production Incident
+     │            │            │           │              │
+     └────────────┴────────────┴───────────┴──────────────┘
+                              │
+                    Quality Knowledge Graph
+                      (Gets Smarter Over Time)</div>
+
+            <div class="highlight-box green">
+                <strong>The Compounding Loop:</strong>
+                <ul>
+                    <li>Production incidents trace back to test gaps</li>
+                    <li>Test gaps trace back to requirement gaps</li>
+                    <li>This feedback makes CLARITY and PULSE more accurate over time</li>
+                    <li><strong>This is the compounding intelligence that competitors don't have.</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- LLM Strategy -->
+        <div class="section">
+            <h2>LLM Routing Strategy</h2>
+            
+            <p>QANTAM uses different AI models for different tasks to optimize cost and quality:</p>
+            
+            <table>
+                <tr>
+                    <th>Task Type</th>
+                    <th>Model</th>
+                    <th>Cost</th>
+                    <th>Reason</th>
+                </tr>
+                <tr>
+                    <td>Ambiguity Detection</td>
+                    <td>Claude Sonnet</td>
+                    <td><span class="badge badge-red">$$$</span></td>
+                    <td>Complex analysis requires best model</td>
+                </tr>
+                <tr>
+                    <td>Regulatory Mapping</td>
+                    <td>Claude Sonnet</td>
+                    <td><span class="badge badge-red">$$$</span></td>
+                    <td>High accuracy needed for compliance</td>
+                </tr>
+                <tr>
+                    <td>Conflict Detection</td>
+                    <td>Claude Sonnet</td>
+                    <td><span class="badge badge-red">$$$</span></td>
+                    <td>Cross-document reasoning</td>
+                </tr>
+                <tr>
+                    <td>Test Generation</td>
+                    <td>Claude Haiku</td>
+                    <td><span class="badge badge-amber">$$</span></td>
+                    <td>Good quality at lower cost</td>
+                </tr>
+                <tr>
+                    <td>Defect Classification</td>
+                    <td>Llama 3.1 8B (local)</td>
+                    <td><span class="badge badge-green">FREE</span></td>
+                    <td>Simple classification task</td>
+                </tr>
+                <tr>
+                    <td>Duplicate Detection</td>
+                    <td>Llama 3.1 8B (local)</td>
+                    <td><span class="badge badge-green">FREE</span></td>
+                    <td>Similarity matching</td>
+                </tr>
+                <tr>
+                    <td>Report Formatting</td>
+                    <td>Llama 3.1 8B (local)</td>
+                    <td><span class="badge badge-green">FREE</span></td>
+                    <td>Template-based generation</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Confidence Scoring -->
+        <div class="section">
+            <h2>Confidence Scoring</h2>
+            
+            <p>Every AI output includes a confidence score (0-100). This determines how the result is handled:</p>
+            
+            <table>
+                <tr>
+                    <th>Score Range</th>
+                    <th>Status</th>
+                    <th>UI Display</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>85-100</td>
+                    <td><span class="badge badge-green">AUTO APPROVE</span></td>
+                    <td>Green</td>
+                    <td>Suggested for immediate approval</td>
+                </tr>
+                <tr>
+                    <td>70-84</td>
+                    <td><span class="badge badge-amber">HUMAN REVIEW</span></td>
+                    <td>Amber</td>
+                    <td>Requires human verification</td>
+                </tr>
+                <tr>
+                    <td>0-69</td>
+                    <td><span class="badge badge-red">LOW CONFIDENCE</span></td>
+                    <td>Red</td>
+                    <td>Likely incorrect, needs careful review</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Who Uses It -->
+        <div class="section">
+            <h2>Who Uses QANTAM?</h2>
+            
+            <table>
+                <tr>
+                    <th>Role</th>
+                    <th>Primary Modules</th>
+                    <th>Key Benefit</th>
+                </tr>
+                <tr>
+                    <td><strong>QA Engineer</strong></td>
+                    <td>CLARITY, PULSE</td>
+                    <td>Write tests 70% faster, catch requirement issues early</td>
+                </tr>
+                <tr>
+                    <td><strong>QA Lead</strong></td>
+                    <td>CLARITY, PULSE, SIGNAL</td>
+                    <td>Better coverage, fewer escaped defects, team metrics</td>
+                </tr>
+                <tr>
+                    <td><strong>Release Manager</strong></td>
+                    <td>SIGNAL</td>
+                    <td>Confident Go/No-Go decisions with evidence</td>
+                </tr>
+                <tr>
+                    <td><strong>Developer</strong></td>
+                    <td>FORGE</td>
+                    <td>Know which code changes are risky before merge</td>
+                </tr>
+                <tr>
+                    <td><strong>CTO / Auditor</strong></td>
+                    <td>SIGNAL Reports</td>
+                    <td>Compliance evidence, quality trends, ROI data</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="section">
+            <h2>Technology Stack</h2>
+            
+            <table>
+                <tr>
+                    <th>Layer</th>
+                    <th>Technology</th>
+                    <th>Purpose</th>
+                </tr>
+                <tr>
+                    <td>Frontend</td>
+                    <td>Next.js 14, React, TypeScript, Tailwind CSS</td>
+                    <td>Modern, responsive UI</td>
+                </tr>
+                <tr>
+                    <td>Backend</td>
+                    <td>FastAPI, Python 3.11, Pydantic</td>
+                    <td>High-performance API</td>
+                </tr>
+                <tr>
+                    <td>Database</td>
+                    <td>PostgreSQL 16, Neo4j 5</td>
+                    <td>Operational + Graph data</td>
+                </tr>
+                <tr>
+                    <td>Cache/Queue</td>
+                    <td>Redis 7</td>
+                    <td>Sessions, task queue</td>
+                </tr>
+                <tr>
+                    <td>Search</td>
+                    <td>Meilisearch</td>
+                    <td>Full-text search</td>
+                </tr>
+                <tr>
+                    <td>Storage</td>
+                    <td>MinIO (S3-compatible)</td>
+                    <td>File storage</td>
+                </tr>
+                <tr>
+                    <td>LLM</td>
+                    <td>LiteLLM → Claude, Llama 3.1</td>
+                    <td>AI orchestration</td>
+                </tr>
+                <tr>
+                    <td>Orchestration</td>
+                    <td>K3s (Kubernetes)</td>
+                    <td>Container management</td>
+                </tr>
+                <tr>
+                    <td>CI/CD</td>
+                    <td>GitHub Actions</td>
+                    <td>Automated testing & deployment</td>
+                </tr>
+                <tr>
+                    <td>Monitoring</td>
+                    <td>Grafana, Prometheus, Loki</td>
+                    <td>Metrics, logs, alerting</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <footer style="background: #1e293b; color: #94a3b8; padding: 40px 20px; text-align: center;">
+        <p>QANTAM AI - Quality Engineering AI Platform</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Confidential - Test Yantra Internal</p>
+    </footer>
+</body>
+</html>

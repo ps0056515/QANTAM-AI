@@ -1,0 +1,25 @@
+all:
+  children:
+    prod:
+      hosts:
+        qantam-prod:
+          ansible_host: "{{ prod_server_ip }}"
+          ansible_user: root
+          ansible_ssh_private_key_file: ~/.ssh/qantam_prod
+    staging:
+      hosts:
+        qantam-staging:
+          ansible_host: "{{ staging_server_ip }}"
+          ansible_user: root
+          ansible_ssh_private_key_file: ~/.ssh/qantam_staging
+    monitoring:
+      hosts:
+        qantam-monitor:
+          ansible_host: "{{ oracle_server_ip }}"
+          ansible_user: ubuntu
+          ansible_ssh_private_key_file: ~/.ssh/oracle_free
+
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    domain: qantam.ai
+    staging_domain: staging.qantam.ai

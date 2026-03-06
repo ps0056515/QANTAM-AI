@@ -1,0 +1,23 @@
+---
+- name: Download K3s installer
+  get_url:
+    url: https://get.k3s.io
+    dest: /tmp/k3s-install.sh
+    mode: '0755'
+
+- name: Install K3s server
+  shell: INSTALL_K3S_EXEC="server --disable traefik" /tmp/k3s-install.sh
+  args:
+    creates: /usr/local/bin/k3s
+
+- name: Wait for K3s to be ready
+  wait_for:
+    path: /etc/rancher/k3s/k3s.yaml
+    state: present
+    timeout: 120
+
+- name: Allow K3s API port
+  ufw:
+    rule: allow
+    port: "6443"
+    proto: tcp

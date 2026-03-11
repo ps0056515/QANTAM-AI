@@ -58,9 +58,11 @@ make dev
 
 # Run backend (FastAPI)
 make api
+nohup make api-start > api.log 2>&1 &
 
 # Run frontend (Next.js)
 make web
+nohup make web > web.log 2>&1 &
 
 # Run tests
 make test
